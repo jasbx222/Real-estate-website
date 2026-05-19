@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
+  --color-primary: var(--primary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-border-color: var(--border-color);
+  --color-card: var(--card);
+
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* FORCED DARK MODE ONLY WITH HIGH-CONTRAST ACCESSIBILITY */
+:root {
+  --primary: #ffffff;
+  --background: #070b15; /* Extremely dark premium navy */
+  --foreground: #f3f4f6; /* High contrast silver/white */
+  --card: #0f172a; /* Slate 900 for solid contrast */
+  --accent: #f59e0b; /* Amber/Gold for maximum legibility on dark backgrounds */
+  --border-color: #334155; /* Higher visibility border slate-700 */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800; /* Extra bold headings */
+  color: #ffffff; /* pure white for headings to maximize readability */
+}
+
+/* Custom legible inputs */
+input, select, textarea {
+  color: #ffffff !important;
+  background-color: #1e293b !important;
+  border-color: #475569 !important;
+}
+
+input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Utilities */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 3D Card Animation Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
 }
